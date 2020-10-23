@@ -5,7 +5,9 @@
 <main id="main">
     {% for movie in movies %}
     <header id="article-header">
-        <h1>{{movie.title}}</h1>
+        <h1>
+            {{movie.title}}
+        </h1>
     </header>
     <p>
         <strong>Description: </strong>
@@ -13,20 +15,32 @@
     </p>
     <p>
         <strong>Actors: </strong>
-        {{ movie.actors }}
+        {% for actors in movie.actors %}
+            {{actors.actor_full_name}},
+        {% endfor %}
     </p>
     <p>
         <strong>Genres: </strong>
-        {{ movie.genres }}
+        {% for genres in movie.genres %}
+            {{ genres.genre_name }},
+        {% endfor %}
     </p>
     <p>
         <strong>Director: </strong>
-        {{ movie.director }}
+        {{ movie.director.director_full_name }}
     </p>
     <p>
         <strong>Duration: </strong>
-        {{ movie.duration }}
+        {{ movie.duration }} mins
     </p>
+    <div>
+        <strong>Release: </strong>
+        {{ movie.year }}
+    </div>
+    <div>
+        <strong>Rating: </strong>
+        {{ movie.rating }}
+    </div>
     <article id="article">
         <div style="float:right">
             {% if movie.comments|length > 0 and movie.rank != show_comments_for_movies %}

@@ -31,7 +31,7 @@ class MemoryRepository(AbstractRepository):
         self.__users.append(user)
 
     def get_user(self, username) -> User:
-        return next((user for user in self.__users if user.username == username), None)
+        return next((user for user in self.__users if user.user_name == username), None)
 
     def add_movie(self, movie: Movie):
         insort_left(self.__movies, movie)
@@ -145,7 +145,7 @@ class MemoryRepository(AbstractRepository):
 
         try:
             index = movie.rank
-            for stored_movie in self.__movies[index+1:len(self.__movies)]:
+            for stored_movie in self.__movies[index:len(self.__movies)]:
                 if stored_movie.rank > movie.rank:
                     next_rank = stored_movie.rank
                     break

@@ -8,19 +8,17 @@
     </header>
 
     <div style="clear:both">
-        <a href="{{article.hyperlink}}" target="_blank">
-            <img src={{article.image_hyperlink}} alt="article image">
-        </a>
-        <h2>{{article.title}}</h2>
-        <p>{{article.first_para}}</p>
+        <h2>{{movie.title}}</h2>
+        <p>{{movie.description}}</p>
         <div style="float:left">
-            {% for tag in article.tags %}
-            <button class="btn-general-disabled" disable>{{ tag.name }}</button>
+            {% for genre in movie.genres %}
+            <button class="btn-general-disabled" disable>{{ genre.genre_name }}</button>
             {% endfor %}
         </div>
+        <br>
         <div class="form-wrapper">
             <form action="{{handler_url}}" method="post">
-                {{form.article_id}} <!-- Need to include this hidden field as it tracks the article being commented. -->
+                {{form.movie_id}} <!-- Need to include this hidden field as it tracks the article being commented. -->
                 {{form.csrf_token}} <!-- Need to include this token - Flask WTForms requires it. -->
                 <br>
                 <div class ="form-field">{{form.comment.label}} </br>{{form.comment(size = 100, placeholder="type your comment", class="textarea", cols="50", rows="6", wrap="hard")}}
@@ -36,7 +34,7 @@
             </form>
         </div>
         <div style="clear:both">
-            {% for comment in article.comments %}
+            {% for comment in movie.comments %}
                 <p>{{comment.comment_text}}, by {{comment.username}}, {{comment.timestamp}}</p>
             {% endfor %}
         </div>
