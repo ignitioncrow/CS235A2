@@ -1,4 +1,5 @@
 id,author-id,article-id,comment-text,timestamp
-1,2,1,"Oh no, COVID-19 has hit New Zealand",2020-02-28 14:31:26
-2,1,1,"Yeah Freddie, bad news",2020-02-28 14:39:51
-3,3,1,"I hope it's not as bad here as Italy!",2020-02-29 08:12:08
+1,2,1,"This movie is truly a lot of fun",2020-02-28 14:31:26
+2,1,1,"Colourful, tongue-in-cheek fun, purpose-built for grown-up lovers of kitsch ’80s science-fiction. But the Marvel formula is starting to feel, well, a little too formulaic.",2020-02-28 14:39:51
+3,3,1,"Guardians of the Galaxy,” starring Chris Pratt, is one of those interstellar westerns about a motley group of appealing baddies who rise to the occasion.",2020-02-29 08:12:08
+4,1,2,"This an intense, fairly riveting story",2020-02-28 14:31:26
