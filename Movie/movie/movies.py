@@ -12,11 +12,7 @@ import Movie.adapters.repository as repo
 import Movie.movie.services as services
 
 from Movie.authentication.authentication import login_required
-from Movie.adapters.memory_repository import MemoryRepository
-from Movie.domain.movie import Movie
-from Movie.domain.actor import Actor
-from Movie.domain.genre import Genre
-from Movie.domain.director import Director
+
 
 
 # Configure Blueprint.
@@ -70,10 +66,8 @@ def movies_by_rank():
             last_movie_url=last_movie_url,
             prev_movie_url=prev_movie_url,
             next_movie_url=next_movie_url,
-            show_comments_for_movie=movie_to_show_comments
-        )
+            show_comments_for_movie=movie_to_show_comments)
 
-    # No articles to show, so return the homepage.
     return redirect(url_for('home_bp.home'))
 
 

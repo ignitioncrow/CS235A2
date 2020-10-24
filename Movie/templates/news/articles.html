@@ -4,58 +4,58 @@
 
 <main id="main">
     {% for movie in movies %}
-    <header id="article-header">
-        <h1>
-            {{movie.title}}
-        </h1>
-    </header>
-    <p>
-        <strong>Description: </strong>
-        {{ movie.description }}
-    </p>
-    <p>
-        <strong>Actors: </strong>
-        {% for actors in movie.actors %}
-            {{actors.actor_full_name}},
-        {% endfor %}
-    </p>
-    <p>
-        <strong>Genres: </strong>
-        {% for genres in movie.genres %}
-            {{ genres.genre_name }},
-        {% endfor %}
-    </p>
-    <p>
-        <strong>Director: </strong>
-        {{ movie.director.director_full_name }}
-    </p>
-    <p>
-        <strong>Duration: </strong>
-        {{ movie.duration }} mins
-    </p>
-    <div>
-        <strong>Release: </strong>
-        {{ movie.year }}
-    </div>
-    <div>
-        <strong>Rating: </strong>
-        {{ movie.rating }}
-    </div>
-    <article id="article">
-        <div style="float:right">
-            {% if movie.comments|length > 0 and movie.rank != show_comments_for_movies %}
-                <button class="btn-general" onclick="location.href='{{ movie.view_comment_url }}'">{{ movie.comments|length }} comments</button>
-            {% endif %}
-            <button class="btn-general" onclick="location.href='{{ movie.add_comment_url }}'">Comment</button>
-        </div>
-        {% if movie.rank == show_comments_for_movies %}
-        <div style="clear:both">
-            {% for comment in movie.comments %}
-                <p>{{comment.comment_text}}, by {{comment.username}}, {{comment.timestamp}}</p>
+        <header id="article-header">
+            <h1>
+                {{movie.title}}
+            </h1>
+        </header>
+        <p>
+            <strong>Description: </strong>
+            {{ movie.description }}
+        </p>
+        <p>
+            <strong>Actors: </strong>
+            {% for actors in movie.actors %}
+                {{actors.actor_full_name}},
             {% endfor %}
-        </div>
-        {% endif %}
-    </article>
+        </p>
+        <p>
+            <strong>Genres: </strong>
+            {% for genres in movie.genres %}
+                {{ genres.genre_name }},
+            {% endfor %}
+        </p>
+        <p>
+            <strong>Director: </strong>
+            {{ movie.director.director_full_name }}
+        </p>
+        <p>
+            <strong>Duration: </strong>
+            {{ movie.duration }}mins
+        </p>
+        <p>
+            <strong>Release: </strong>
+            {{ movie.year }}
+        </p>
+        <p>
+            <strong>Rating: </strong>
+            {{ movie.rating }}
+        </p>
+        <article id="article">
+            <div style="float:right">
+                {% if movie.comments|length > 0 and movie.rank != show_comments_for_movie %}
+                    <button class="btn-general" onclick="location.href='{{ movie.view_comment_url }}'">{{ movie.comments|length }} comments</button>
+                {% endif %}
+                <button class="btn-general" onclick="location.href='{{ movie.add_comment_url }}'">Comment</button>
+            </div>
+            {% if movie.rank == show_comments_for_movie %}
+            <div style="clear:both">
+                {% for comment in movie.comments %}
+                    <p>{{comment.comment_text}}, by {{comment.username}}, {{comment.timestamp}}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </article>
     {% endfor %}
 
     <footer>
