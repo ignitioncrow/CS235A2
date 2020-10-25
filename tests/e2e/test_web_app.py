@@ -20,9 +20,11 @@ def test_register(client):
         ('', '', b'Your username is required'),
         ('cj', '', b'Your username is too short'),
         ('test', '', b'Your password is required'),
-        ('test', 'test', b'Your password must at least 8 characters, and contain an upper case letter, a lower case letter and a digit'),
-        ('fmercury', 'Test#6^0', b'Your username is already taken - please supply another'),
+        ('test', 'test', b'Your password must be at least 8 characters, and contain an upper case letter,\
+            a lower case letter and a digit'),
+        ('thorke', 'Test#6^0', b'Your username is already taken - please supply another'),
 ))
+
 def test_register_with_invalid_input(client, username, password, message):
     # Check that attempting to register with invalid combinations of username and password generate appropriate error
     # messages.
@@ -70,22 +72,22 @@ def test_login_required_to_comment(client):
     assert response.headers['Location'] == 'http://localhost/authentication/login'
 
 
-def test_comment(client, auth): # not sure
+def test_comment(client, auth):
     # Login a user.
     auth.login()
 
     # Check that we can retrieve the comment page.
-    response = client.get('/comment?movie=2')
+    response = client.get('/comment?movie=1')
 
     response = client.post(
         '/comment',
-        data={'comment': 'great movie!', 'movie_rank': 2}
+        data={'comment': 'great movie!', 'movie_rank': 1}
     )
     assert response.headers['Location'] == 'http://localhost/articles_by_date?date=2020-02-29&view_comments_for=2'
 
 
 @pytest.mark.parametrize(('comment', 'messages'), (
-        ('Who thinks Trump is a fuckwit?', (b'Your comment must not contain profanity')),
+        ('Who thinks Trump is a fuckwit and bitch?', (b'Your comment must not contain profanity')),
         ('Hey', (b'Your comment is too short')),
         ('ass', (b'Your comment is too short', b'Your comment must not contain profanity')),
 ))
