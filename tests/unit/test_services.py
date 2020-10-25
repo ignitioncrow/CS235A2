@@ -110,7 +110,7 @@ def test_cannot_get_movie_with_non_existent_rank(in_memory_repo):
 
     # Call the service layer to attempt to retrieve the movie.
     with pytest.raises(news_services.NonExistentMovieException):
-        news_services.get_rank(movie_rank, in_memory_repo)
+        news_services.get_movie(movie_rank, in_memory_repo)
 
 
 def test_get_first_movie(in_memory_repo):
@@ -135,15 +135,6 @@ def test_get_movies_by_rank_with_one_rank(in_memory_repo):
 
     assert prev_rank is None
     assert next_rank == 2
-
-
-def test_get_movies_by_rank_with_non_existent_rank(in_memory_repo):
-    target_rank = 1001
-
-    movies_as_dict, prev_rank, next_rank = news_services.get_movie_by_rank(target_rank, in_memory_repo)
-
-    # Check that there are no articles dated 2020-03-06.
-    assert len(movies_as_dict) == 0
 
 
 def test_get_comments_for_movie(in_memory_repo):
