@@ -68,7 +68,7 @@ def test_repository_can_retrieve_movie(in_memory_repo):
 
 
 def test_repository_does_not_retrieve_a_non_existent_movie(in_memory_repo):
-    movie = in_memory_repo.get_article(1001)
+    movie = in_memory_repo.get_movie(1001)
     assert movie is None
 
 
@@ -91,11 +91,6 @@ def test_repository_can_get_last_movie(in_memory_repo):
     assert movie.title == 'Nine Lives'
 
 
-def test_repository_returns_an_empty_list_for_non_existent_ranks(in_memory_repo):
-    movie = in_memory_repo.get_movie_by_rank(1002)
-    assert movie == list()
-
-
 def test_repository_returns_rank_of_previous_movie(in_memory_repo):
     movie = in_memory_repo.get_movie(4)
     previous_rank = in_memory_repo.get_rank_of_previous_movie(movie)
@@ -105,7 +100,7 @@ def test_repository_returns_rank_of_previous_movie(in_memory_repo):
 
 def test_repository_returns_none_when_there_are_no_previous_movie(in_memory_repo):
     movie = in_memory_repo.get_movie(1)
-    previous_rank = in_memory_repo.get_rank_of_previous_rank(movie)
+    previous_rank = in_memory_repo.get_rank_of_previous_movie(movie)
 
     assert previous_rank is None
 
@@ -119,7 +114,7 @@ def test_repository_returns_rank_of_next_rank(in_memory_repo):
 
 def test_repository_returns_none_when_there_are_no_subsequent_movie(in_memory_repo):
     movie = in_memory_repo.get_movie(1000)
-    next_rank = in_memory_repo.get_rank_of_next_rank(movie)
+    next_rank = in_memory_repo.get_rank_of_next_movie(movie)
 
     assert next_rank is None
 

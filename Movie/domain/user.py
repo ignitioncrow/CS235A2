@@ -2,7 +2,7 @@ from typing import List, Iterable
 
 class User:
     def __init__(self, user_name: str, password: str):
-        self.__user_name = user_name.strip().lower()
+        self.__user_name = user_name
         self.__password = password
         self.__watched_movies = []
         self.__comments = []
