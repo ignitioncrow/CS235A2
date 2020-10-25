@@ -81,13 +81,13 @@ def test_comment(client, auth):
 
     response = client.post(
         '/comment',
-        data={'comment': 'great movie!', 'movie_rank': 1}
+        data={'comment': 'great movie!', 'movie_id': 1}
     )
-    assert response.headers['Location'] == 'http://localhost/articles_by_date?date=2020-02-29&view_comments_for=2'
+    assert response.headers['Location'] == 'http://localhost/movies_by_rank?rank=1&view_comments_for=1'
 
 
 @pytest.mark.parametrize(('comment', 'messages'), (
-        ('Who thinks Trump is a fuckwit and bitch?', (b'Your comment must not contain profanity')),
+        ('Who thinks Trump is a fuck wit and bitch?', (b'Your comment must not contain profanity')),
         ('Hey', (b'Your comment is too short')),
         ('ass', (b'Your comment is too short', b'Your comment must not contain profanity')),
 ))
@@ -98,7 +98,7 @@ def test_comment_with_invalid_input(client, auth, comment, messages):
     # Attempt to comment on an movie.
     response = client.post(
         '/comment',
-        data={'comment': comment, 'movie_rank': 2}
+        data={'comment': comment, 'movie_id': 1}
     )
     # Check that supplying invalid comment text generates appropriate error messages.
     for message in messages:
