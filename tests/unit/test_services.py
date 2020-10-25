@@ -149,6 +149,14 @@ def test_get_comments_for_movie(in_memory_repo):
     assert 1 in movie_rank and len(movie_rank) == 1
 
 
+def test_get_movies_by_rank_with_non_existent_rank(in_memory_repo):
+    target_date = 1001
+
+    with pytest.raises(ValueError):
+        news_services.get_movie_by_rank(target_date, in_memory_repo)
+
+
+
 def test_get_comments_for_non_existent_movie(in_memory_repo):
     with pytest.raises(NonExistentMovieException):
         comments_as_dict = news_services.get_comments_for_movie(1001, in_memory_repo)
